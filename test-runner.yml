@@ -1,0 +1,23 @@
+name: Test Runner
+
+on:
+  push:
+    branches: [ feature/add-ci-workflow ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: [self-hosted, windows]
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Hello
+        run: echo "Runner works on Windows!"
+      
+      - name: System Info
+        run: |
+          hostname
+          whoami
+          systeminfo | findstr "OS Name"
+        shell: cmd
