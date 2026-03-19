@@ -1,0 +1,27 @@
+name: Test Runner
+
+on:
+  push:
+    branches: [ feature/add-ci-workflow ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: [self-hosted, windows]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Hello from Windows
+        run: echo "Hello from Windows runner!"
+      
+      - name: Show computer name
+        run: |
+          echo "Computer: $env:COMPUTERNAME"
+          echo "User: $env:USERNAME"
+        shell: powershell
+      
+      - name: List files
+        run: dir
+        shell: cmd
